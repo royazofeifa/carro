@@ -13,6 +13,7 @@
             --light: #f5f5f5;
             --dark: #333;
             --gray: #777;
+            --warning: #ff9800;
         }
         
         /* Estilos generales */
@@ -47,6 +48,24 @@
         
         p {
             margin-bottom: 15px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
         }
         
         /* Header */
@@ -99,6 +118,15 @@
             margin: 20px 0;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             animation: pulse 2s infinite;
+        }
+        
+        .price-note {
+            font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 10px;
         }
         
         @keyframes pulse {
@@ -170,6 +198,18 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .detail-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
         }
         
         .detail-card:hover {
@@ -205,6 +245,57 @@
             color: var(--accent);
             font-weight: bold;
             margin-right: 10px;
+        }
+        
+        /* Sección de Detalles a Mejorar */
+        .improvements {
+            background-color: white;
+        }
+        
+        .improvement-card {
+            background-color: #fff8e1;
+            border-left: 5px solid var(--warning);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .improvement-card h3 {
+            color: var(--warning);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .improvement-list {
+            list-style-type: none;
+        }
+        
+        .improvement-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 152, 0, 0.2);
+            display: flex;
+            align-items: center;
+        }
+        
+        .improvement-list li:before {
+            content: "⚠";
+            color: var(--warning);
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .honesty-note {
+            background-color: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            border-left: 5px solid var(--accent);
+            text-align: center;
+            font-style: italic;
         }
         
         /* Historia */
@@ -286,6 +377,60 @@
             background-color: #128C7E;
         }
         
+        /* Botón flotante de WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .whatsapp-float-text {
+            position: absolute;
+            right: 70px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #25D366;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .whatsapp-float:hover .whatsapp-float-text {
+            opacity: 1;
+        }
+        
         /* Footer */
         footer {
             background-color: var(--dark);
@@ -312,6 +457,24 @@
             .gallery-container {
                 grid-template-columns: 1fr;
             }
+            
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 25px;
+            }
+            
+            .whatsapp-float-text {
+                font-size: 12px;
+                padding: 6px 12px;
+                right: 60px;
+            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -324,7 +487,8 @@
                 <h1>Hyundai Accent 2011</h1>
                 <p class="subtitle">Excelente estado - Muy bien cuidado</p>
                 <div class="price">₡3,700,000</div>
-                <p>Un vehículo confiable y en perfectas condiciones</p>
+                <p class="price-note">Precio negociable según detalles a continuación</p>
+                <p>Un vehículo confiable y en perfectas condiciones mecánicas</p>
             </div>
         </div>
     </header>
@@ -332,7 +496,7 @@
     <!-- Galería de fotos -->
     <section class="gallery">
         <div class="container">
-            <h2>Galería de Fotos</h2>
+            <h2 class="section-title">Galería de Fotos</h2>
             <div class="gallery-container">
                 <div class="gallery-item">
                     <img src="frente.jpg" alt="Vista frontal del Hyundai Accent">
@@ -359,7 +523,7 @@
     <!-- Detalles del vehículo -->
     <section class="details">
         <div class="container">
-            <h2>Detalles del Vehículo</h2>
+            <h2 class="section-title">Detalles del Vehículo</h2>
             <div class="details-grid">
                 <div class="detail-card">
                     <h3><i class="fas fa-car"></i> Información General</h3>
@@ -368,7 +532,7 @@
                         <li>Transmisión: Manual</li>
                         <li>Combustible: Gasolina</li>
                         <li>Color: Según fotos</li>
-                        <li>Estado: Excelente</li>
+                        <li>Estado: Excelente mecánicamente</li>
                     </ul>
                 </div>
                 
@@ -397,14 +561,34 @@
         </div>
     </section>
 
+    <!-- Sección de Detalles a Mejorar -->
+    <section class="improvements">
+        <div class="container">
+            <h2 class="section-title">Detalles a Mejorar</h2>
+            <div class="improvement-card">
+                <h3><i class="fas fa-exclamation-triangle"></i> Aspectos a considerar</h3>
+                <p>Para ser completamente transparentes sobre el estado real del vehículo, queremos informar sobre estos detalles:</p>
+                <ul class="improvement-list">
+                    <li>No tiene motor en la ventanilla trasera izquierda</li>
+                    <li>El radio no funciona correctamente</li>
+                    <li>La rejilla de salida de aire acondicionado está quebrada</li>
+                    <li>Falta la cinta de la puerta del lado del acompañante</li>
+                </ul>
+            </div>
+            <div class="honesty-note">
+                <p>Por estas razones, el precio es <strong>negociable</strong>. Esta información se proporciona para ser completamente honestos sobre el estado del vehículo y establecer expectativas claras.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Historia del vehículo -->
     <section class="history">
         <div class="container">
             <div class="history-content">
-                <h2>Nuestra Historia con este Vehículo</h2>
+                <h2 class="section-title">Nuestra Historia con este Vehículo</h2>
                 <p>Este Hyundai Accent 2011 ha sido un vehículo muy especial para nosotros. Originalmente lo compramos en marzo de 2018 a la esposa de un estudiante cuando vivíamos en Pérez Zeledón.</p>
                 <p>Ha sido el carro de mi esposa y siempre lo hemos mantenido con mucho cariño y cuidado. Recientemente, al mudarnos a Quepos, necesitamos un vehículo más alto debido a las condiciones del camino, por lo que este hermoso Accent ya casi no lo usamos.</p>
-                <p>Hace dos meses, nuestro mecánico detectó un problema en la computadora, así que inmediatamente le instalamos una nueva. Además, se le cambiaron las bujías, el sensor de viela y se rectificó. Es un carro que realmente se ha "chineado" mucho y le tenemos mucho cariño.</p>
+                <p>Hace dos meses, nuestro mecánico detectó un problema en la computadora, así que inmediatamente le instalamos una nueva. Además, se le cambiaron las bujías, el sensor de vela y se rectificó. Es un carro que realmente se ha "chineado" mucho y le tenemos mucho cariño.</p>
                 <p>Estamos seguros de que será un vehículo confiable y excelente para su próximo dueño.</p>
             </div>
         </div>
@@ -430,7 +614,11 @@
             <p>&copy; 2025 - Hyundai Accent 2011 - Venta de Vehículo</p>
         </div>
     </footer>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/50683335665" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-float-text">¡Contáctanos!</span>
+    </a>
 </body>
-
 </html>
-
